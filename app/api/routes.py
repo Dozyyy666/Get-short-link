@@ -41,7 +41,7 @@ def redirect_to_url(short_code: str):
 
     try:
         #ищем ссылку в базе
-        link_data = crud_link.create_link(db,short_code)
+        link_data = crud_link.get_link_by_code(db,short_code)
 
         #Если не нашли - выдаем стандартную HTTP ошибку 404
         if not link_data:
