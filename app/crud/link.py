@@ -23,7 +23,7 @@ def create_link(db_conn: sqlite3.Connection, long_url: str, custom_code: str | N
 
     try:
         cursor.execute(
-            "INSERT INTO links (short_sode, long_url, clicks) VALUES (?, ?, ?)",
+            "INSERT INTO links (short_code, long_url, clicks) VALUES (?, ?, ?)",
             (short_code, long_url, 0)
         )
         db_conn.commit()
@@ -36,7 +36,7 @@ def create_link(db_conn: sqlite3.Connection, long_url: str, custom_code: str | N
         }
 
     except sqlite3.IntegrityError:
-        #Сработает если short_sode уже существует в БД
+        #Сработает если short_code уже существует в БД
         raise ValueError(f"Код '{short_code}' уже занят. Пожалуйста, выберите другой.")
 
 def get_link_by_code(db_conn: sqlite3.Connection, short_code: str) -> dict | None:
@@ -58,7 +58,7 @@ def get_link_by_code(db_conn: sqlite3.Connection, short_code: str) -> dict | Non
 def increment_clicks(db_conn: sqlite3.Connection, short_code: str):
     cursor = db_conn.cursor()
     cursor.execute(
-        "UPDATE links SET clicks = clicks + 1 WHERE short_sode = ?",
+        "UPDATE links SET clicks = clicks + 1 WHERE short_code = ?",
         (short_code,)
     )
     db_conn.commit()
