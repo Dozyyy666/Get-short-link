@@ -7,4 +7,37 @@
     <!-- Подключаем CSS файл -->
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+<body>
+    <div class="container">
+        <h1>🔗 Сокращатель ссылок</h1>
+        <p class="subtitle">Введите длинную ссылку и получите короткую</p>
+        <form id="shortenForm" class="form">
+            <input
+                type="url"
+                id="longUrl"
+                placeholder="https://example.com/very/long/url"
+                required
+            >
+            <input
+                type="text"
+                id="customCode"
+                placeholder="Свой код (необязательно)"
+            >
+            <button type="submit" id="submitBtn">Сократить</button>
+        </form>
 
+        <!-- Блок для отображения результата (скрыт по умолчанию) -->
+        <div id="result" class="result hidden">
+            <p class="result-label">Ваша короткая ссылка:</p>
+            <div class="link-box">
+                <a id="shortLink" href="#" target="_blank"></a>
+                <button id="copyBtn" class="copy-btn">📋 Копировать</button>
+            </div>
+            <p id="stats" class="stats"></p>
+        </div>
+
+        <div id="error" class="error hidden"></div>
+    </div>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
